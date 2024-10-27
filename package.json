@@ -20,5 +20,9 @@
     "qrcode": "^1.5.4",
     "sqlite3": "^5.1.7",
     "uuid": "^10.0.0"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
+  
 }
