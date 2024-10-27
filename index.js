@@ -33,12 +33,12 @@ const checkToken = jwt({
     algorithms: ['RS256']
   });
 
-// Serve static files from the "styles" folder
+
 app.use('/styles', express.static(path.join(__dirname, 'styles'))); 
 
 app.use(auth(config));
 
-// Homepage Route
+
 app.get('/', (req, res) => {
     db.get(`SELECT COUNT(*) AS count FROM tickets`, (err, row) => {
       if (err) {
@@ -57,7 +57,7 @@ app.get('/', (req, res) => {
     });
 });
 
-// Ticket Generation Endpoint
+
 app.get('/tickets', checkToken, async (req, res) => {
 
   const { vatin, firstName, lastName } = req.body;
@@ -78,7 +78,6 @@ try {
     [ticketId, vatin, firstName, lastName],
     (err) => {
         if (err) return res.status(500).send('Database error');
-        //res.set('Content-type', 'image/png');
         res.send(qrCode);
     });
 } catch {
@@ -87,7 +86,7 @@ try {
 });
 });
 
-// Ticket Details Route (GET /tickets/:id)
+
 app.get('/tickets/:id', requiresAuth(), (req, res) => {
     const { id } = req.params;
   
