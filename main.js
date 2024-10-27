@@ -1,6 +1,6 @@
 
 const express = require('express');
-const db = require('./db');  // Import the database connection file
+const db = require('./db');
 
 const app = express();
 
